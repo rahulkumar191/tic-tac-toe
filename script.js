@@ -371,8 +371,8 @@ const displayNone = (...args) => {
 
 const boxClickSound = new Audio();
 const winningSound = new Audio();
-boxClickSound.src = "/media/box-click.wav";
-winningSound.src = "/media/winning.wav";
+boxClickSound.src = "media/box-click.wav";
+winningSound.src = "media/winning.wav";
 
 const board = document.querySelector('.board');
 const optionBox = document.querySelector('.option');
