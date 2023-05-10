@@ -1,0 +1,145 @@
+:root{
+    --primary: #2C3333;
+    --secondary: #2192FF;
+    --ternary: #ff0000;
+    --boarder-color: #3E6D9C;
+}
+
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    font-family: sans-serif;
+    font-weight: 800;
+}
+
+.board{
+    background-color: var(--primary);
+    width: 90%;
+    max-width: 450px;
+    max-height: 95%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: hidden;
+    position: relative;
+}
+
+/* box styling  */
+.box{
+    color: #ff0000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.winningLine{
+    background-color: white;
+    position: absolute;
+    z-index: 1;
+    transform-origin: 1% 0%;
+    box-shadow: 0px 0px 5px 2px rgba(255, 166, 0, 0.842);
+    border-radius: 5px;
+}
+
+.row-style{
+    width: 105%;
+    display: block;
+}
+.diagonal-style{
+    width: 145%;
+    display: block;
+    rotate: 45deg;
+}
+.coloumn-style{
+    width: 105%;
+    display: block;
+    rotate: 90deg;
+}
+
+/* option box style */
+.option{
+    max-width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    /* border: 3px solid var(--boarder-color); */
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: var(--primary);
+    color: white;
+    /* display: none; */
+}
+
+.size-picker{
+    width: 100%;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    border: 2px solid var(--boarder-color);
+}
+.increase , .decrease{
+    flex: 30% 1 1;
+}
+.increase:hover , .decrease:hover {
+    background-color: var(--boarder-color);
+    transition: all .3s;
+}
+.computer:hover , .human:hover{
+    color: var(--secondary);
+    transition: all .3s;
+}
+.board-size{
+    flex: 50% 0 0;
+    border-left: 2px solid var(--boarder-color);
+    border-right: 2px solid var(--boarder-color);
+}
+
+
+/* last option style */
+.last-option{
+    background-color: var(--primary);
+    color: white;
+    border: 3px solid white;
+    padding: 1rem 2rem;
+    border-radius: 7px;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+    position: absolute;
+    z-index: 3;
+    /* display: none; */
+}
+.home:hover , .restart:hover{
+    color: var(--secondary);
+    transition: all .3s;
+}
+
+
+/* Add the blur effect */
+.blur-board{
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+}
