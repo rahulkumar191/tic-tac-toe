@@ -150,7 +150,6 @@ const checkWinner = ()=>{
             let sumOfinp = 0;
             for(let k =0; k<rightCount; k++){
                 sumOfinp += gridData[x+j+k][y-j-k];
-                console.log(x+j+k, ',' , y-j-k)
             }
             if(sumOfinp === 0 || sumOfinp == totalCross){
                 if(sumOfinp == totalCross) sumOfinp = 'X';
