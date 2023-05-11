@@ -107,50 +107,74 @@ const checkWinner = ()=>{
         }
     } 
 
-    //right diagonal checking for winner
-    for(let i=0; i<boardSize/2; i++){
-        for(let j=0; j<=boardSize-rightCount -i; j++){
+    //left to right diagonal winner checking
+    let x = boardSize-rightCount;
+    let y = 0;
+    let greatest = 1;
+    for(let i=0; i<= (boardSize - rightCount)*2; i++){
+        for(let j=0; j<greatest; j++){
             let sumOfinp = 0;
             for(let k =0; k<rightCount; k++){
-                sumOfinp += gridData[j+k][i+j+k];
+                sumOfinp += gridData[x+j+k][y+j+k];
             }
             if(sumOfinp === 0 || sumOfinp == totalCross){
                 if(sumOfinp == totalCross) sumOfinp = 'X';
                 else sumOfinp = 'O';
                 let winnerDetails ={
                     player : sumOfinp,
-                    i : j,
-                    j : i+j,
-                    increment : 'ij'
+                    i : x+j,
+                    j : y+j,
+                    increment : 'ij',
+                    angle : 45,
+                    lft : y+j
                 }
                 return winnerDetails;
             }
         }
+        if(x>0){
+            x--;
+            greatest++;
+        }
+        else{
+            y++;
+            greatest--;
+        }
     }
 
-    //left diagonal checking for winner
-    for(let i=1; i<boardSize/2; i++){
-        for(let j=0; j<=boardSize-rightCount -i; j++){
+    // right to left winner checking
+    x = boardSize-rightCount;
+    y = boardSize - 1;
+    greatest = 1;
+    for(let i=0; i<= (boardSize - rightCount)*2; i++){
+        for(let j=0; j<greatest; j++){
             let sumOfinp = 0;
             for(let k =0; k<rightCount; k++){
-                sumOfinp += gridData[i+j+k][j+k];
+                sumOfinp += gridData[x+j+k][y-j-k];
+                console.log(x+j+k, ',' , y-j-k)
             }
             if(sumOfinp === 0 || sumOfinp == totalCross){
                 if(sumOfinp == totalCross) sumOfinp = 'X';
                 else sumOfinp = 'O';
                 let winnerDetails ={
                     player : sumOfinp,
-                    i : i+j,
-                    j : j,
-                    increment : 'ij'
+                    i : x+j,
+                    j : y-j,
+                    increment : 'ij',
+                    angle : 135,
+                    lft : (y-j)+1
                 }
                 return winnerDetails;
             }
         }
+        if(x>0){
+            x--;
+            greatest++;
+        }
+        else{
+            y--;
+            greatest--;
+        }
     }
-
-    
-
 }
 
 const winningLineAnimation = (winningLineWidth) =>{
@@ -194,9 +218,10 @@ const showWinner = (winnerDetails) =>{
             winningLineAnimation(winningLineWidth);
         }
         else{
+            let angle = winnerDetails.angle;
             winningLine.style.top = boxWidth*i +'px';
-            winningLine.style.left = boxWidth*j + 'px';
-            winningLine.style.transform = 'rotate(45deg)';
+            winningLine.style.left = boxWidth*winnerDetails.lft + 'px';
+            winningLine.style.transform =`rotate(${angle}deg)`;
             winningLineWidth = rightCount*(boxWidth*141.42)/100;
             winningLineAnimation(winningLineWidth);
         }
